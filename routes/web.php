@@ -20,3 +20,4 @@ Route::post('/categories/create', [CategoryController::class, 'store']);
 Route::get('/products', [ProductController::class, 'index']); // list produk
 Route::get('/products/create', [ProductController::class, 'create']);
 Route::post('/products/create', [ProductController::class, 'store']);
+Route::delete('/products/{id}', [ProductController::class, 'delete']);

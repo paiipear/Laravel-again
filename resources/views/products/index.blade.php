@@ -49,8 +49,13 @@
                 alt="{{ $product->name }}" 
                 class="w-16 h-16 object-cover mx-auto rounded">   
             </td>
-           <td class="py-2 px-4 border-b text-center">
-             <button class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600">Hapus</button>
+           <td>
+            <form action="/products/{{ $product->id }}" method="POST" onsubmit="return confirm('Are you sure?')" class="text-center" >
+                @csrf
+                @method('DELETE')
+                <button type="submit"  class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Delete</button>
+                <a href=""  class="px-3 py-1 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition">Update</a>
+            </form>
            </td>
          </tr>
       
