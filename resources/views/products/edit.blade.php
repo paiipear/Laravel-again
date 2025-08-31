@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ $title }}</title>
+</head>
+<body>
+  <!-- Header -->
+    <header style="background:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.05);">
+        <div style="max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-weight:bold;font-size:1.25rem;color:#21d9d0;">Lunalux page</span>
+            <nav>
+                <a href="/" style="margin-right:16px;color:#374151;text-decoration:none;">Home</a>
+                <a href="/about" style="margin-right:16px;color:#374151;text-decoration:none;">About</a>
+                <a href="/contact" style="color:#374151;text-decoration:none;">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    
+    
+     <main style="flex:1;display:flex;align-items:center;justify-content:center;padding:40px 16px;">
+        <div style="max-width:650px;width:100%;background:#fff;border-radius:8px;padding:32px 28px;box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+            <h1 style="font-size:2rem;margin-bottom:10px;color:#111827;">{{ $title }}</h1>
+
+            <form action="/products/{{ $product->id }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                @if(session('success'))
+                <div style="background:#d1fae5;color:#065f46;padding:16px;margin:16px auto;max-width:650px;border-radius:8px;width:100%;">
+                    {{ session('success') }}
+                </div>
+                @endif
+
+                <div style="margin-bottom:16px;margin-right:25px;">
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Name</label>
+                    <input type="text" placeholder="Product Name" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="name" value="{{ $product->name }}" >
+                </div>
+                <div style="margin-bottom:16px;margin-right:25px;">
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Description</label>
+                    <input type="text" placeholder="Description" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="description" value="{{ $product->description }}" >
+                </div>
+                <div style="margin-bottom:16px;margin-right:25px;">
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Category Name</label>
+                    <input type="text" placeholder="Category Name" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="categoryName" value="{{ $product->categoryName }}"  >
+                </div>
+               
+                <div style="margin-bottom:16px;margin-right:25px;">
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Price</label>
+                    <input type="number" placeholder="Price" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="price"  value="{{ $product->price }}" >
+                </div>
+                <div style="margin-bottom:16px;margin-right:25px;">
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Image</label>
+                    @if($product->image)
+                   <div style="image-preview margin-top:16px;margin-bottom:16px; ">
+                        <img src="{{ asset('storage/' . $product->image) }}" 
+                            alt="{{ $product->name }}" 
+                            style="max-width:170px; max-height:170px; object-fit:contain; ">
+                    </div>
+                    @endif
+                    <input type="file" placeholder="Image" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="image" >
+                
+                </div>
+
+                <button type="submit" style="background:#21d9d0;color:#fff;padding:12px 28px;border:none;border-radius:6px;font-size:1rem;font-weight:500;cursor:pointer;display:block;margin-left:auto;">
+                    Edit Product
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+     <!-- Footer -->
+    {{-- <footer style="background:#fff;border-top:1px solid #e5e7eb;padding:16px 0;">
+        <div style="max-width:1200px;margin:0 auto;padding:0 24px;text-align:center;color:#6b7280;font-size:0.875rem;">
+            &copy; {{ date('Y') }} Lunalux. All rights reserved.
+        </div>
+    </footer> --}}
+    
+</body>
+</html>

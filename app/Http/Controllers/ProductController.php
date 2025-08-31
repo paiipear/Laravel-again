@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,7 @@ class ProductController extends Controller
     {
          $products = Product::all();
          return view('products.index', [
-            'title' => 'List Product', 'products' => $products , compact('products')
+            'title' => 'List Product', 'products' => $products 
          ]);
     }
 
@@ -25,7 +26,7 @@ class ProductController extends Controller
     {
          $products = Product::all();
          return view('products.create', [
-            'title' => 'Create Product', 'products' => $products , 
+            'title' => 'Create Product', 'products' => $products
          ]);
     }
 
@@ -59,7 +60,11 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::find($id);
+        if(!$product){
+            return redirect('/products')->with('error', 'Product not found ');
+        }
+        return view('products.edit', ['title' => 'Edit Product ', 'product' => $product,]);
     }
 
     /**
@@ -67,7 +72,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::find($id);
+        if(!$product){
+            return redirect('/products')->with('error', 'Product not found ');
+        } 
+        $data = $request->only(['name', 'description', 'categoryName', 'price']);
+        if($request->hasFile('image')){
+            $data['image'] = $request->file('image')->store('products', 'public');
+            if($product->image){
+                Storage::disk('public')->delete($product->image);
+
+            }
+        }
+        $product->update($data);
+        return redirect('/products')->with('success', 'Product updated successfully!');
     }
 
     /**
@@ -81,6 +99,6 @@ class ProductController extends Controller
             return redirect('/products')->with('success', 'Product deleted successfully!');
         } else {
             return redirect('/products')->with('error', 'Product not found.');
-        }`
+        }
     }
 }

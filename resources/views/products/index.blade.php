@@ -20,7 +20,8 @@
     </header>
     
   <div class="container mx-auto px-6 py-8">
-    <h1 class="text-2xl font-bold mb-6">List Produk</h1>
+    <a href="/products/create"  class="px-3 py-2  bg-teal-300 text-white rounded-lg hover:bg-teal-600 transition">Create Product</a>
+    <h1 class="text-2xl font-bold mb-6 mt-5">List Produk</h1>
 
     <div class="overflow-x-auto">
       <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow">
@@ -54,7 +55,7 @@
                 @csrf
                 @method('DELETE')
                 <button type="submit"  class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Delete</button>
-                <a href=""  class="px-3 py-1 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition">Update</a>
+                <a href="/products/{{ $product->id }}/edit"  class="px-3 py-1 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition">Update</a>
             </form>
            </td>
          </tr>
