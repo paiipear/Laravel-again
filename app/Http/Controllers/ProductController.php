@@ -44,7 +44,7 @@ class ProductController extends Controller
                 'image' => $path = $request->file('image')->store('images', 'public') //sesuaikan dengan name yang ada di form
             ]
         );
-        return redirect('/products/create')->with('success', 'Category created successfully!');
+        return redirect('/products')->with('success', 'Category created successfully!');
     }
 
     /**

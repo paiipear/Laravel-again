@@ -28,7 +28,7 @@
         <div style="max-width:650px;width:100%;background:#fff;border-radius:8px;padding:32px 28px;box-shadow:0 4px 12px rgba(0,0,0,0.08);">
             <h1 style="font-size:2rem;margin-bottom:10px;color:#111827;">{{ $title }}</h1>
 
-            <form action="/products/create" method="POST" enctype="multipart/form-data">
+            <form action="/products/store" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div style="margin-bottom:16px;margin-right:25px;">

@@ -28,13 +28,22 @@
         <div style="max-width:650px;width:100%;background:#fff;border-radius:8px;padding:32px 28px;box-shadow:0 4px 12px rgba(0,0,0,0.08);">
             <h1 style="font-size:2rem;margin-bottom:10px;color:#111827;">{{ $title }}</h1>
 
-            <form action="/categories/store" method="POST" enctype="multipart/form-data">
+            <form action="/customers/store" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div style="margin-bottom:16px;margin-right:25px;">
-                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Category Name</label>
-                    <input type="text" placeholder="Category Name" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="categoryName" required>
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Name</label>
+                    <input type="text" placeholder="Name" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="name" required>
                 </div>
+                <div style="margin-bottom:16px;margin-right:25px;">
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Phone Number</label>
+                    <input type="text" placeholder="Phone Number" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="phone" required>
+                </div>
+                <div style="margin-bottom:16px;margin-right:25px;">
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Address</label>
+                    <input type="text" placeholder="Address" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="address" required>
+                </div>
+               
 
                 <button type="submit" style="background:#21d9d0;color:#fff;padding:12px 28px;border:none;border-radius:6px;font-size:1rem;font-weight:500;cursor:pointer;display:block;margin-left:auto;">
                     submit

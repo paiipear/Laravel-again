@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
 </head>
 <body>
@@ -18,26 +19,38 @@
         </div>
     </header>
 
-    @if(session('success'))
-        <div style="background:#d1fae5;color:#065f46;padding:16px;margin:16px auto;max-width:650px;border-radius:8px;width:100%;">
-            {{ session('success') }}
-        </div>
-        
-    @endif
+    
+    
      <main style="flex:1;display:flex;align-items:center;justify-content:center;padding:40px 16px;">
         <div style="max-width:650px;width:100%;background:#fff;border-radius:8px;padding:32px 28px;box-shadow:0 4px 12px rgba(0,0,0,0.08);">
             <h1 style="font-size:2rem;margin-bottom:10px;color:#111827;">{{ $title }}</h1>
 
-            <form action="/categories/store" method="POST" enctype="multipart/form-data">
+            <form action="/customers/{{ $customers->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
+                @if(session('success'))
+                <div style="background:#d1fae5;color:#065f46;padding:16px;margin:16px auto;max-width:650px;border-radius:8px;width:100%;">
+                    {{ session('success') }}
+                </div>
+                @endif
 
                 <div style="margin-bottom:16px;margin-right:25px;">
-                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Category Name</label>
-                    <input type="text" placeholder="Category Name" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="categoryName" required>
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Name</label>
+                    <input type="text" placeholder="Product Name" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="name" value="{{ $customers->name }}" >
                 </div>
+                <div style="margin-bottom:16px;margin-right:25px;">
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Phone Number</label>
+                    <input type="text" placeholder="Phone Number" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="phone" value="{{ $customers->phone }}" >
+                </div>
+                <div style="margin-bottom:16px;margin-right:25px;">
+                    <label style="display:block;margin-bottom:6px;color:#374151;font-weight:500; ">Address</label>
+                    <input type="text" placeholder="Address" style="width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:6px;font-size:1rem;" name="address" value="{{ $customers->address }}"  >
+                </div>
+               
+            
 
                 <button type="submit" style="background:#21d9d0;color:#fff;padding:12px 28px;border:none;border-radius:6px;font-size:1rem;font-weight:500;cursor:pointer;display:block;margin-left:auto;">
-                    submit
+                    Edit Customer
                 </button>
             </form>
         </div>
@@ -50,7 +63,6 @@
             &copy; {{ date('Y') }} Lunalux. All rights reserved.
         </div>
     </footer> --}}
-
     
 </body>
 </html>
